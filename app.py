@@ -24,7 +24,7 @@ def history():
     con = sqlite3.connect('tdAmeritrade.db')
     cur = con.cursor()
     # limite de resultados via queryString
-    select_stmt = 'select seq, timestamp, high_price, open_price, close_price, low_price, volume from CHART_FUTURES order by seq desc limit 10'
+    select_stmt = 'select seq, timestamp, high_price, open_price, close_price, low_price, volume from CHART_FUTURES order by seq desc limit 50'
 
     data =[]
 

@@ -198,7 +198,33 @@ data = [
     { time: '2019-05-24', open: 192.54, high: 193.86, low: 190.41, close: 193.59 },
 ];
 
-candleSeries.setData(data);
+fetch("/history").then( x => {
+    return x.json();
+    }).then( y => {
+
+    for (i=0; i<y.length; i++)
+    {
+        var d = new Date();
+        d.setDate(d.getDate()  - 10 + i)
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+
+    newTime = [year, month, day].join('-');
+    console.log(newTime);
+
+
+        y[i]['time'] = newTime;
+    }
+    candleSeries.setData(y);
+
+});
+
 
 </script>
 
